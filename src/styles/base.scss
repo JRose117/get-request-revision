@@ -1,0 +1,29 @@
+
+.site-wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  main {
+    flex-grow: 1;
+    padding-top: 20px;
+  }
+}
+
+.btn {
+  &.dark{
+    background-color: $button;
+    border: none;
+    color: #fff;
+    &:hover{
+      background-color: darken($button, 5%);
+    }
+  }
+}
+
+.spinner-wrapper{
+  text-align: center;
+  img{
+    max-width: 100%;
+    width: 40px;
+  }
+}
