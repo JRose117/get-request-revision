@@ -16,14 +16,14 @@ const DrinkSingle = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-        setDrink(data.drinks)
+        const { data } = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+        setDrink(data.drinks[0])
       } catch (err) {
         setErrors(true)
       }
     }
     getData()
-  }, [id])
+  }, id)
   console.log(drink)
 
   return (
@@ -32,12 +32,12 @@ const DrinkSingle = () => {
       <Row>
         {drink ?
           <>
-            <h1>{drink[0].strDrink}</h1>
+            <h1>{drink.strDrink}</h1>
             <Col md="6">
-              <img className='w-100' src={drink[0].strDrinkThumb} alt={drink[0].strDrink} />
+              <img className='w-100' src={drink.strDrinkThumb} alt={drink.strDrink} />
             </Col>
             <Col md="6">
-              <p>{drink[0].strInstructions}</p>
+              <p>{drink.strInstructions}</p>
               <hr />
               <Link to="/" className='btn dark'>Back to all Drinks</Link>
             </Col>

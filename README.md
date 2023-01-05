@@ -1,2 +1,3 @@
-# get-request-revision
-Revising get requests
+Another intentionally unfinished project.
+
+Revising get requests in react
