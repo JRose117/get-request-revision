@@ -10,6 +10,9 @@ import  Spinner  from './Spinner'
 const AllDrinks = () => {
   const [errors, setErrors] = useState(false)
   const [drinks, setDrinks] = useState([])
+  const [filteredDrinks, setFilteredDrinks] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+
 
   useEffect(() => {
     const getDrinkData = async () => {
@@ -25,13 +28,24 @@ const AllDrinks = () => {
   }, [])
   console.log(drinks)
 
+  useEffect(()=>{
+    setFilteredDrinks(
+      drinks.filter(drink => drink.strDrink.toLowerCase().startsWith(searchTerm.toLowerCase()))
+    )
+  }, [searchTerm, drinks])
+
+  const handleSearch = event => {
+    setSearchTerm(event.target.value)
+  }
+
   return (
     <Container as="main" className='drinks-index text-center'>
       <h1 className='text-center mb-4'>Drinks</h1>
+      <div className='search'><input type="text" value={searchTerm} placeholder="Search for a Character" onChange={handleSearch} /></div>
       <Row>
-        { drinks.length > 0
+        { filteredDrinks.length > 0
           ?
-          drinks.map(drink => {
+          filteredDrinks.map(drink => {
             const { idDrink, strDrink, strCategory, strDrinkThumb } = drink
             console.log(drink)
             return (
